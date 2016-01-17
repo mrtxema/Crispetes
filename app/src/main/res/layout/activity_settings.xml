@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout android:gravity="center" android:id="@id/loadingPanel" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminate="true" />
+    </RelativeLayout>
+
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:textStyle="bold"
+        android:textSize="16dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/accounts"
+        />
+
+    <TextView android:id="@id/txtMessages" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="gone" />
+
+    <ListView android:id="@id/lstCredentials" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+
+</LinearLayout>

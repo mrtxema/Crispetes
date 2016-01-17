@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="fill_parent"
+    android:layout_height="wrap_content" android:paddingStart="10dp" android:paddingEnd="10dp">
+
+    <RelativeLayout android:layout_width="0dip" android:layout_height="fill_parent" android:layout_weight=".4">
+        <TextView android:id="@id/fieldLabel" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Username" android:textStyle="bold" android:paddingTop="10dp" android:labelFor="@id/fieldInput"/>
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="0dip" android:layout_height="wrap_content" android:layout_weight=".6">
+        <EditText android:id="@id/fieldInput" android:layout_width="fill_parent" android:layout_height="wrap_content" android:inputType="text" />
+    </RelativeLayout>
+
+</LinearLayout>

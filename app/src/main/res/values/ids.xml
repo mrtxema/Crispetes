@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btnUp" type="id" />
+    <item name="btnMarkViewed" type="id" />
+    <item name="subtitle" type="id" />
+    <item name="txtMessages" type="id" />
+    <item name="lstLinks" type="id" />
+    <item name="txtMovie" type="id" />
+    <item name="btnSearchMovie" type="id" />
+    <item name="lstMovies" type="id" />
+    <item name="btnAddMovie" type="id" />
+    <item name="text" type="id" />
+    <item name="fieldLabel" type="id" />
+    <item name="fieldInput" type="id" />
+    <item name="credentialsTitle" type="id" />
+    <item name="lstParameters" type="id" />
+    <item name="btnTitleHome" type="id" />
+    <item name="btnTitleSettings" type="id" />
+    <item name="btnTitleSearch" type="id" />
+    <item name="lstCredentials" type="id" />
+    <item name="loadingPanel" type="id" />
+</resources>

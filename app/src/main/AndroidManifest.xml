@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="cat.mrtxema.crispetes">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:supportsRtl="true" android:theme="@style/CustomTheme">
+        <activity android:label="@string/app_name" android:name=".MainActivity_">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/app_name" android:name=".SearchActivity_"/>
+        <activity android:label="@string/app_name" android:name=".MovieActivity_"/>
+        <activity android:label="@string/app_name" android:name=".SettingsActivity_"/>
+        <activity android:label="@string/app_name" android:name=".CredentialsActivity_"/>
+    </application>
+
+</manifest>

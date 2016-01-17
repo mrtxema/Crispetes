@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Crispetes</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="goup">Go up</string>
+    <string name="markViewed">Seen</string>
+    <string name="noresults">No results found</string>
+    <string name="search">Search</string>
+    <string name="chooser_title">Select app to play episode</string>
+    <string name="credentialsTitle">%s login</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="accounts">Accounts</string>
+</resources>
