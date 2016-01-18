@@ -2,6 +2,7 @@ package cat.mrtxema.crispetes;
 
 import java.util.List;
 
+import cat.mrtxema.crispetes.adapter.LinkViewAdapter;
 import cat.mrtxema.crispetes.model.FavoriteMovie;
 import cat.mrtxema.crispetes.service.Link;
 import cat.mrtxema.crispetes.service.MovieServiceClient;
@@ -10,7 +11,6 @@ import cat.mrtxema.crispetes.service.MovieServiceException;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View;
@@ -81,7 +81,7 @@ public class MovieActivity extends BaseActivity {
 
     @UiThread
     void showLinks(List<Link> links) {
-        lstLinks.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, links));
+        lstLinks.setAdapter(new LinkViewAdapter(this, links));
     }
 
     @Background

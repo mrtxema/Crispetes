@@ -2,12 +2,12 @@ package cat.mrtxema.crispetes;
 
 import java.util.List;
 
-import cat.mrtxema.crispetes.adapter.MovieViewAdapter;
 import cat.mrtxema.crispetes.model.FavoriteMovie;
 import cat.mrtxema.crispetes.store.DatabaseManager;
 import cat.mrtxema.crispetes.store.StoreException;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.view.View;
 
@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity {
 
     @UiThread
     void showMovies(List<FavoriteMovie> movies) {
-        lstMovies.setAdapter(new MovieViewAdapter(this, movies));
+        lstMovies.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, movies));
         if (movies.isEmpty()) {
             setMessage(noResults);
         }
