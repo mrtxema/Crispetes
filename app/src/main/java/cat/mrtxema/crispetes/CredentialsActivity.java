@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import cat.mrtxema.crispetes.model.Credentials;
-import cat.mrtxema.crispetes.service.Store;
+import cat.mrtxema.crispetes.model.Store;
 import cat.mrtxema.crispetes.store.DatabaseManager;
 import cat.mrtxema.crispetes.store.StoreException;
 
@@ -94,7 +94,7 @@ public class CredentialsActivity extends BaseActivity {
             database.saveCredentials(this, newCredentials);
             finishActivityWithResult(RESULT_OK);
         } catch (StoreException e) {
-            Log.e("TvShowClient", e.getMessage(), e);
+            Log.e(getClass().getSimpleName(), e.getMessage(), e);
             setMessage(e.getMessage());
         }
     }

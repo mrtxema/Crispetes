@@ -18,6 +18,8 @@ import java.util.Map;
 
 @EBean
 public class RestApiClient {
+    public static final String TVSHOWS_SERVER = "http://tvshowsapi.herokuapp.com";
+    private static final String UTF8_CHARSET = "utf-8";
 
     private RestApiResponse callUrl(String url) throws IOException {
         HttpURLConnection urlConnection = (HttpURLConnection) new URL(url).openConnection();
@@ -28,6 +30,22 @@ public class RestApiClient {
                     urlConnection.getResponseCode());
         } finally {
                 urlConnection.disconnect();
+        }
+    }
+
+    private RestApiResponse callPostUrl(String url, String postData) throws IOException {
+        HttpURLConnection urlConnection = (HttpURLConnection) new URL(url).openConnection();
+        try {
+            urlConnection.setDoOutput(true);
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("content-type", "application/json");
+            urlConnection.setRequestProperty("charset", UTF8_CHARSET);
+            urlConnection.getOutputStream().write(postData.getBytes(UTF8_CHARSET));
+            return new RestApiResponse(
+                    readStream(new BufferedInputStream(urlConnection.getInputStream())),
+                    urlConnection.getResponseCode());
+        } finally {
+            urlConnection.disconnect();
         }
     }
 
@@ -58,6 +76,14 @@ public class RestApiClient {
             throw new RestApiException("Error calling url: " + url, new JSONObject(response.getContent()));
         }
         return new JSONArray(response.getContent());
+    }
+
+    JSONObject postUrl(String url, String postData) throws RestApiException, IOException, JSONException {
+        RestApiResponse response = callPostUrl(url, postData);
+        if (response.getStatus() == HttpURLConnection.HTTP_BAD_REQUEST) {
+            throw new RestApiException("Error calling url: " + url, new JSONObject(response.getContent()));
+        }
+        return new JSONObject(response.getContent());
     }
 
     List<String> asStringList(JSONArray array) throws JSONException {

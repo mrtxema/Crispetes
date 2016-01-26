@@ -3,6 +3,12 @@ package cat.mrtxema.crispetes.service;
 import android.content.Context;
 
 import cat.mrtxema.crispetes.model.Credentials;
+import cat.mrtxema.crispetes.model.Language;
+import cat.mrtxema.crispetes.model.Link;
+import cat.mrtxema.crispetes.model.Movie;
+import cat.mrtxema.crispetes.model.NavigationAction;
+import cat.mrtxema.crispetes.model.Store;
+import cat.mrtxema.crispetes.model.VideoUrl;
 import cat.mrtxema.crispetes.store.DatabaseManager;
 import cat.mrtxema.crispetes.store.StoreException;
 
@@ -23,7 +29,6 @@ import java.util.Map;
 
 @EBean(scope = EBean.Scope.Singleton)
 public class MovieServiceClient {
-    private static final String SERVER = "http://tvshowsapi.herokuapp.com";
     private static final String BASE_PATH = "/movies/v1";
     private static final int SESSION_EXPIRED_ERROR = 6;
     private static final long TOKEN_EXPIRATION_TIME = 1740000;
@@ -35,7 +40,7 @@ public class MovieServiceClient {
 
     private JSONObject callApiUrl(String store, String urlPath) throws JSONException, MovieServiceException {
         try {
-            return restApiClient.callUrlAsJsonObject(SERVER + BASE_PATH + urlPath);
+            return restApiClient.callUrlAsJsonObject(RestApiClient.TVSHOWS_SERVER + BASE_PATH + urlPath);
         } catch (RestApiException e) {
             JSONObject error = e.getError();
             if ((store != null) && (error.getInt("code") == SESSION_EXPIRED_ERROR)) {
@@ -49,7 +54,7 @@ public class MovieServiceClient {
 
     private JSONArray callApiUrlAsArray(String urlPath) throws JSONException, MovieServiceException {
         try {
-            return restApiClient.callUrlAsJsonArray(SERVER + BASE_PATH + urlPath);
+            return restApiClient.callUrlAsJsonArray(RestApiClient.TVSHOWS_SERVER + BASE_PATH + urlPath);
         } catch (RestApiException e) {
             throw new MovieServiceException(e.getError().getString("message"));
         } catch (IOException e) {
@@ -155,10 +160,16 @@ public class MovieServiceClient {
         return result;
     }
 
-    public String getLinkUrl(Context context, String store, String movie, String link) throws MovieServiceException {
+    public VideoUrl getLinkUrl(Context context, String store, String movie, String link) throws MovieServiceException {
         final String url = String.format("/%s/movie/%s/%s?token=%s", store, movie, link, getToken(context, store));
         try {
-            return callApiUrl(store, url).getString("url");
+            JSONObject videoObj = callApiUrl(store, url);
+            JSONObject navigationObj = videoObj.optJSONObject("navigationAction");
+            NavigationAction navigationAction = null;
+            if (navigationObj != null) {
+                navigationAction = new NavigationAction(navigationObj.getString("uri"), navigationObj.optString("postData"));
+            }
+            return new VideoUrl(videoObj.getString("url"), navigationAction);
         } catch(JSONException e) {
             throw new MovieServiceException("Can\'t parse response from url: " + url, e);
         }

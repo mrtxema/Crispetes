@@ -8,10 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import cat.mrtxema.crispetes.R;
-import cat.mrtxema.crispetes.model.FavoriteMovie;
-import cat.mrtxema.crispetes.service.Link;
+import cat.mrtxema.crispetes.model.Link;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class LinkViewAdapter extends ArrayAdapter<Link> {

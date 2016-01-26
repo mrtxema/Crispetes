@@ -5,9 +5,9 @@ import java.util.List;
 
 import cat.mrtxema.crispetes.model.Credentials;
 import cat.mrtxema.crispetes.model.FavoriteMovie;
-import cat.mrtxema.crispetes.service.Movie;
+import cat.mrtxema.crispetes.model.Movie;
 import cat.mrtxema.crispetes.service.MovieServiceException;
-import cat.mrtxema.crispetes.service.Store;
+import cat.mrtxema.crispetes.model.Store;
 import cat.mrtxema.crispetes.service.MovieServiceClient;
 import cat.mrtxema.crispetes.store.DatabaseManager;
 import cat.mrtxema.crispetes.store.StoreException;
@@ -56,7 +56,7 @@ public class SearchActivity extends BaseActivity {
         try {
             showStores(client.getAllStores());
         } catch(MovieServiceException e) {
-            Log.e("TvShowClient", e.getMessage(), e);
+            Log.e(getClass().getSimpleName(), e.getMessage(), e);
             setMessage(e.getMessage());
         }
         setLoadingPanelVisibility(View.GONE);
@@ -91,7 +91,7 @@ public class SearchActivity extends BaseActivity {
             Credentials credentials = database.getCredentials(this, store.getCode());
             showCredentials(store, credentials);
         } catch (StoreException e) {
-            Log.e("TvShowClient", e.getMessage(), e);
+            Log.e(getClass().getSimpleName(), e.getMessage(), e);
             setMessage(e.getMessage());
         }
     }
@@ -121,7 +121,7 @@ public class SearchActivity extends BaseActivity {
             List<Movie> movies = client.searchMovies(this, store, searchString);
             showMovies(movies);
         } catch(MovieServiceException e) {
-            Log.e("TvShowClient", e.getMessage(), e);
+            Log.e(getClass().getSimpleName(), e.getMessage(), e);
             setMessage(e.getMessage());
         }
         setLoadingPanelVisibility(View.GONE);

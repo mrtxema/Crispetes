@@ -7,7 +7,7 @@ import android.widget.ListView;
 
 import cat.mrtxema.crispetes.model.Credentials;
 import cat.mrtxema.crispetes.service.MovieServiceException;
-import cat.mrtxema.crispetes.service.Store;
+import cat.mrtxema.crispetes.model.Store;
 import cat.mrtxema.crispetes.service.MovieServiceClient;
 import cat.mrtxema.crispetes.store.DatabaseManager;
 import cat.mrtxema.crispetes.store.StoreException;
@@ -64,7 +64,7 @@ public class SettingsActivity extends BaseActivity {
             List<Credentials> credentialsList = database.getAllCredentials(this);
             showCredentials(credentialsList);
         } catch (StoreException e) {
-            Log.e("TvShowClient", e.getMessage(), e);
+            Log.e(getClass().getSimpleName(), e.getMessage(), e);
             setMessage(e.getMessage());
         }
         setLoadingPanelVisibility(View.GONE);
@@ -84,7 +84,7 @@ public class SettingsActivity extends BaseActivity {
             List<Store> storeList = client.getAllStores();
             showStores(storeList);
         } catch(MovieServiceException e) {
-            Log.e("TvShowClient", e.getMessage(), e);
+            Log.e(getClass().getSimpleName(), e.getMessage(), e);
             setMessage(e.getMessage());
         }
     }

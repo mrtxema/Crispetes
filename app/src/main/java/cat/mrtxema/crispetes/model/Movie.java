@@ -1,4 +1,4 @@
-package cat.mrtxema.crispetes.service;
+package cat.mrtxema.crispetes.model;
 
 
 public class Movie {
